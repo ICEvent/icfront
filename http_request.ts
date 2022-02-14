@@ -10,8 +10,8 @@ import { validateBody } from './validation';
 import * as base64Arraybuffer from 'base64-arraybuffer';
 import * as pako from 'pako';
 
-const CANISTER_ID = "jbxh5-eqaaa-aaaae-qaaoq-cai";
-const MY_DOMAIN = "plevyak-ae40a.web.app";
+const CANISTER_ID = "znisf-eqaaa-aaaaj-aabta-cai";
+const MY_DOMAIN = "icevent.org";
 
 const canisterIdlFactory: IDL.InterfaceFactory = ({ IDL }) => {
   const HeaderField = IDL.Tuple(IDL.Text, IDL.Text);
@@ -75,7 +75,11 @@ export async function handleRequest(request: Request): Promise<Response> {
   const canisterId = Principal.fromText(CANISTER_ID);
   try {
     const replicaUrl = new URL("https://ic0.app");
-    const agent = new HttpAgent({ host: replicaUrl.toString() });
+    // const agent = new HttpAgent({ host: replicaUrl.toString() });
+    const agent = new HttpAgent({
+      host: replicaUrl.toString(),
+      fetch: self.fetch.bind(self),
+    });
     const actor = Actor.createActor(canisterIdlFactory, {
       agent,
       canisterId: canisterId,
