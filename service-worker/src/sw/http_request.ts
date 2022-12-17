@@ -11,7 +11,7 @@ import * as base64Arraybuffer from 'base64-arraybuffer';
 import * as pako from 'pako';
 
 const CANISTER_ID = "znisf-eqaaa-aaaaj-aabta-cai";
-const MY_DOMAIN = "icevent.org";
+const MY_DOMAIN = "icevent.app";
 
 const canisterIdlFactory: IDL.InterfaceFactory = ({ IDL }) => {
   const HeaderField = IDL.Tuple(IDL.Text, IDL.Text);
